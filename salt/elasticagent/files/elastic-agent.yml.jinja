@@ -11,7 +11,10 @@ outputs:
       - 'https://{{ GLOBALS.hostname }}:9200'
     username: '{{ ES_USER }}'
     password: '{{ ES_PASS }}'
-    ssl.verification_mode: none
+    ssl:
+      certificate_authorities:
+        - |-
+          {{ salt['cp.get_file_str']('/etc/pki/tls/certs/intca.crt')|replace('\n', '\n          ') }}
 output_permissions: {}
 agent:
   download:

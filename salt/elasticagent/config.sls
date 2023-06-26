@@ -28,6 +28,14 @@ elasticagentconfdir:
     - group: 939
     - makedirs: True
 
+elasticagent_sbin:
+  file.recurse:
+    - name: /usr/sbin
+    - source: salt://elasticagent/tools/sbin
+    - user: 949
+    - group: 939
+    - file_mode: 755
+
 # Create config
 create-elastic-agent-config:
   file.managed:
