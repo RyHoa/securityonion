@@ -33,6 +33,8 @@ so-elastic-agent:
         {% endif %}
     - binds:
       - /opt/so/conf/elastic-agent/elastic-agent.yml:/usr/share/elastic-agent/elastic-agent.yml:ro
+      - /opt/so/log:/opt/so/log:ro
+      #- /var/log:/var/log:ro
       - /nsm:/nsm:ro
      {% if DOCKER.containers['so-elastic-agent'].custom_bind_mounts %}
         {% for BIND in DOCKER.containers['so-elastic-agent'].custom_bind_mounts %}
@@ -45,6 +47,10 @@ so-elastic-agent:
       - {{ XTRAENV }}
         {% endfor %}
       {% endif %}
+    - require:
+      - file: elastic-agent-config
+    - watch:
+      - file: elastic-agent-config
 
 
 delete_so-elastic-agent_so-status.disabled:

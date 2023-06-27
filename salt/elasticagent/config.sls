@@ -37,7 +37,7 @@ elasticagent_sbin:
     - file_mode: 755
 
 # Create config
-create-elastic-agent-config:
+elastic-agent-config:
   file.managed:
     - name: /opt/so/conf/elastic-agent/elastic-agent.yml
     - source: salt://elasticagent/files/elastic-agent.yml.jinja
