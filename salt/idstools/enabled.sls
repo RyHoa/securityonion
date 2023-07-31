@@ -8,6 +8,7 @@
 {%   from 'docker/docker.map.jinja' import DOCKER %}
 {%   from 'vars/globals.map.jinja' import GLOBALS %}
 {%   set proxy = salt['pillar.get']('manager:proxy') %}
+{%   set noproxy = salt['pillar.get']('manager:no_proxy') %} 
 
 include:
   - idstools.config
@@ -25,7 +26,7 @@ so-idstools:
     - environment:
       - http_proxy={{ proxy }}
       - https_proxy={{ proxy }}
-      - no_proxy={{ salt['pillar.get']('manager:no_proxy') }}
+      - no_proxy={{ no_proxy }}
       {% if DOCKER.containers['so-elastalert'].extra_env %}
         {% for XTRAENV in DOCKER.containers['so-elastalert'].extra_env %}
       - {{ XTRAENV }}
