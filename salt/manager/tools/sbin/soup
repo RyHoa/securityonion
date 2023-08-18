@@ -673,7 +673,7 @@ verify_latest_update_script() {
 }
 
 # Keeping this block in case we need to do a hotfix that requires salt update
-#apply_hotfix() {
+apply_hotfix() {
 #  if [[ "$INSTALLEDVERSION" == "2.3.90" ]] ; then
 #    fix_wazuh
 #  elif [[ "$INSTALLEDVERSION" == "2.3.110" ]] ; then
@@ -681,7 +681,8 @@ verify_latest_update_script() {
 #  else
 #    echo "No actions required. ($INSTALLEDVERSION/$HOTFIXVERSION)"
 #  fi
-#}
+  echo "No actions required. ($INSTALLEDVERSION/$HOTFIXVERSION)"
+}
 
 
 #upgrade salt to 3004.1
